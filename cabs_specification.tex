@@ -1,4 +1,4 @@
-\documentclass[10pt, conference, hidelinks, onecolumn]{IEEEtran}
+\documentclass[12pt, conference, hidelinks, onecolumn]{IEEEtran}
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
@@ -33,7 +33,7 @@
 \usepackage{fancyhdr} % Custom headers and footers
 \pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
 \fancyhead{} % No page header - if you want one, create it in the same way as the footers below
-\fancyfoot[L]{rev 0.98} % Empty left footer
+\fancyfoot[L]{rev 0.98 draft} % Empty left footer
 \fancyfoot[C]{} % Empty center footer
 \fancyfoot[R]{} % Page numbering for right footer
 \renewcommand{\headrulewidth}{0pt} % Remove header underlines
@@ -65,18 +65,18 @@ Measuring video codec performance has traditionally been a simple matter. One se
 
 
 \subsection{Motivation}
-	With numerous video codec schemes being released frequently, the need to understand their performance characteristics is more prevalent than ever. Codec performance benchmarking is done directly by those who are releasing the product or by a third party. While results are usually shared publicly a sense of opaqueness can remain unless all the materials used during the benchmarking process are released to the public. Even when the later is available, no standardized way seems to be available to compare with other setups. $CABS_{score}$ tries to address this issue by providing a definite framework in which anyone can produce benchmarking scores and share them unambiguously with the world.
+	With numerous video codec schemes being released frequently, the need to understand their performance characteristics is more prevalent than ever. Codec performance benchmarking is done directly by those who are releasing the product or by a third party. While results are usually shared publicly, a sense of opaqueness can remain unless all the materials used during the benchmarking process are released to the public. Even when the later is available, no standardized way seems to be available to compare with other setups. $CABS_{score}$ tries to address this issue by providing a definite framework in which anyone can produce benchmarking scores and share them unambiguously with the world.
 
 \subsection{Informal description}
 $CABS_{score}$ is an intuitive and simple score, from which any reader can get a sense of the underlying performance of the codec at hand. To start with, a reference codec configuration is selected towards which all other measurements will be referred to. From this particular configuration the score calculates the codec average bitrate savings through a determined range of bitrates. The result of the score is the percentage of savings from the reference configuration.
 
 
 \section{$CABS_{score}$ components}
-The intent of this specification is to establish a framework in which anyone can define their own scores, and being able to share it with others in a seamless manner. In this context the specification essentially establishes the parameters surrounding the testing setup with enough specificity to remove ambiguity, and with enough flexibility to allow versatility in benchmarking scenarios. In detail a particular $CABS_{score}$ is defined with all the following required parameters:
+The intent of this specification is to establish a framework in which anyone can define their own scores, and being able to share it with others in a seamless manner. In this context, the specification essentially establishes the parameters surrounding the testing setup with enough specificity to remove ambiguity, and with enough flexibility to allow versatility in benchmarking scenarios. In detail, a particular $CABS_{score}$ is defined with all the following required parameters:
 
 \subsubsection{A Nickname}
 \label{subsec:nickname}
-The nickname of the score gets added to the subscript when referring to it. This acts as a shorthand for it. A nickname is only meaningful in the context of the other defining parameters of the score, like the sequence set, bitrage range ... Example nicknames could be '4K' for CABS\textsubscript{4K}, 'UHD' for CABS\textsubscript{UHD}
+The nickname of the score gets added to the subscript when referring to it. This acts as a shorthand for it. A nickname is only meaningful in the context of the other defining parameters of the score, like: the sequence set, bitrage range ... Example nicknames could be '4K' for CABS\textsubscript{4K}, 'UHD' for CABS\textsubscript{UHD}
 
 
 \subsubsection{A Sequence Set}
@@ -96,10 +96,10 @@ The reference RD curve that all the other curves are compared to. This can be de
 
 \subsubsection{A Frame based metric used for comparison}
 \label{subsec:framebasemetric}
-The specific metric used for measuring the distortion introduced by the coded due to the encoding process. For example SSIM or PSNR. Pseudo-code or equivalent algorithmic description must be provided to instruct how to derive the metric numbers on a frame by frame basis.
+The specific metric used for measuring the distortion introduced by the codec due to the encoding process. For example SSIM or PSNR. Pseudo-code or equivalent algorithmic description must be provided to instruct how to derive the metric numbers on a frame by frame basis.
 
 \subsection{NOTES}
-All this parameters must be provided along side the score for it to be valid. However, the general goal is that a specific nickname will be generally known to be equivalent to all the other parameters as a short hand. For example $CABS_{4KvsHD1}$ could be used as the nickname for one specific set of parameters available in some public repository, such specific $CABS_{score}$ would measure performance of codecs on 4K video compared to an HD era video codec.
+All this parameters must be provided along side the score for it to be valid. However, the general goal is that a specific nickname will be generally known to be equivalent to all the other parameters as short hand. For example $CABS_{4KvsHD1}$ could be used as the nickname for one specific set of parameters available in some public repository, such specific $CABS_{score}$ would measure performance of codecs on 4K video compared to an HD era video codec.
 
 \subsubsection{Materials distribution}
 The particular way in which the components of a $CABS_{score}$ are distributed are beyond the scope of this specification. However, here are a few suggestions:
@@ -114,7 +114,7 @@ The particular way in which the components of a $CABS_{score}$ are distributed a
 \section{Calculation}
 The following steps must be followed to produce a $CABS_{score}$ that is complaint with this spec:
 \subsection{RD Curve sampling}
-Due to the intrinsic non-linear nature of the rate distortion curve for a specific codec configuration, the RD curve must be empirically sampled. This specification requires that the RD curve is sampled with a density of at least 10 points through the bitrate range of coverage. For example if the bitrate range is $\lbrace 500_{kbps} \to 2500_{kbps} \rbrace $ a encoded bitstream must be obtained per configuration with resulting bitrate every $200_{kbps}$ for the range.
+Due to the intrinsic non-linear nature of the rate distortion curve for a specific codec configuration, the RD curve must be empirically sampled. This specification requires that the RD curve is sampled with a density of at least 10 points through the bitrate range of coverage. For example, if the bitrate range is $\lbrace 500_{kbps} \to 2500_{kbps} \rbrace $ a encoded bitstream must be obtained per configuration with resulting bitrate every $200_{kbps}$ for the range.
 
 
 \subsection{RD Curve interpolation}
@@ -128,7 +128,20 @@ In order to extrapolate values outside the sampled RD curve in the previous step
 \end{figure}
 
 \subsection{Determine Metric range from the bitrate reference range for a specific sequence}
-The Average Bitrate Savings is informally defined as the average distance in bitrate between the reference RD curve $ref(x)$ and the testing curve $g(x)$. The average distance is calculated in the y axis (the metric axis) between two points: a lower $M_{low}$ and a higher $M_{high}$. Both points are formally derived from the reference curve as follows: 
+The Average Bitrate Savings is informally defined as the average distance in bitrate between the reference RD curve $ref(x)$ and the testing curve $g(x)$. In Figure~\ref{fig:x265rd} the green area represents the $CABS$ area of interest with a range of $\lbrace 200_{kbps} \to 800_{kbps} \rbrace$
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=3.8in,height=2.3in]{x264_x265_cabs}
+\caption{x265 in green $g(x)$ vs x264 in blue $ref(x)$. Area in green is the area of coverage for $ABS$ calculation with range $\lbrace 200_{kbps} \to 800_{kbps} \rbrace$. foreman CIF, ultrafast preset,, PSNR, $CABS$ score averages 66\% bitrate savings }
+\label{fig:x265rd}
+\end{figure}
+
+
+
+
+
+The average distance is calculated in the y axis (the metric axis) between two points: a lower $M_{low}$ and a higher $M_{high}$. Both points are formally derived from the reference curve as follows: 
 
 \begin{gather}
 M_{low} = ref(br_{low})\\
