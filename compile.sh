@@ -1,4 +1,4 @@
 #!/bin/sh
 
-pdflatex cabs_specification.tex
-pdflatex cabs_specification.tex
+pdflatex cabs_score_spec.tex
+pdflatex cabs_score_spec.tex
