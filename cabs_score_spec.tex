@@ -20,7 +20,7 @@
 
 
 \title{The CABS\textsubscript{score} \\ A definite video codec metric}
-\author{Alberto Vigata\\ email: {\tt alberto.vigata@gmail.com}\\ \today}
+\author{Alberto Vigata\\ email: {\tt vigata@gmail.com}\\ \today}
 \date{\today}
 
 
@@ -33,7 +33,7 @@
 \usepackage{fancyhdr} % Custom headers and footers
 \pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
 \fancyhead{} % No page header - if you want one, create it in the same way as the footers below
-\fancyfoot[L]{rev 0.98 draft} % Empty left footer
+\fancyfoot[L]{rev 0.99 draft} % Empty left footer
 \fancyfoot[C]{} % Empty center footer
 \fancyfoot[R]{} % Page numbering for right footer
 \renewcommand{\headrulewidth}{0pt} % Remove header underlines
@@ -51,7 +51,7 @@
 %\boldmath
     \textit{
     \noindent
-Measuring video codec performance has traditionally been a simple matter. One selects an encoder and runs a sequence set through it producing the resulting compressed bitstreams. Subsequent comparisons of the size of the resulting bitstream against some chosen metric (SSIM \cite{ssim}, PSNR, ...) yields the framework for comparison of performance between different setups. While this is a valid proposition some problems are inherent with it. The lack of standardization between benchmarking setups makes their results not comparable and therefore relative. This paper introduces the $CABS_{score}$ (Codec Average Bitrate Savings) which provides a definite, clearly stated framework to the benchmarking environment.
+Measuring video codec performance has traditionally been a simple matter. One selects an encoder and runs a sequence set through it producing the resulting compressed bitstreams. Subsequent comparisons of the size of the resulting bitstream against some chosen metric (SSIM \cite{ssim}, PSNR, VMAF\cite{vmaf} ...) yields the framework for comparison of performance between different setups. While this is a valid proposition some problems are inherent with it. The lack of standardization between benchmarking setups makes their results not comparable and therefore relative. This paper introduces the $CABS_{score}$ (Codec Average Bitrate Savings) which provides a definite, clearly stated framework to the benchmarking environment.
     }
     \end{abstract}
     \vspace{3mm}
@@ -76,7 +76,7 @@ The intent of this specification is to establish a framework in which anyone can
 
 \subsubsection{A Nickname}
 \label{subsec:nickname}
-The nickname of the score gets added to the subscript when referring to it. This acts as a shorthand for it. A nickname is only meaningful in the context of the other defining parameters of the score, like: the sequence set, bitrage range ... Example nicknames could be '4K' for CABS\textsubscript{4K}, 'UHD' for CABS\textsubscript{UHD}
+The nickname of the score gets added to the subscript when referring to it. This acts as a shorthand for it. A nickname is only meaningful in the context of the other defining parameters of the score, like: the sequence set, bitrage range ... Example nicknames could be '4K' for CABS\textsubscript{4K}, '4KHDR' for CABS\textsubscript{4KHDR}, '8K' for CABS\textsubscript{8K} that could be referring to testing contexts related to 4K, 4K HDR, and 8K video respectively. 
 
 
 \subsubsection{A Sequence Set}
@@ -96,7 +96,7 @@ The reference RD curve that all the other curves are compared to. This can be de
 
 \subsubsection{A Frame based metric used for comparison}
 \label{subsec:framebasemetric}
-The specific metric used for measuring the distortion introduced by the codec due to the encoding process. For example SSIM or PSNR. Pseudo-code or equivalent algorithmic description must be provided to instruct how to derive the metric numbers on a frame by frame basis.
+The specific metric used for measuring the distortion introduced by the codec due to the encoding process. For example SSIM,  PSNR, VMAF ... Pseudo-code or equivalent algorithmic description must be provided to instruct how to derive the metric numbers on a frame by frame basis.
 
 \subsection{NOTES}
 All this parameters must be provided along side the score for it to be valid. However, the general goal is that a specific nickname will be generally known to be equivalent to all the other parameters as short hand. For example $CABS_{4KvsHD1}$ could be used as the nickname for one specific set of parameters available in some public repository, such specific $CABS_{score}$ would measure performance of codecs on 4K video compared to an HD era video codec.
@@ -180,6 +180,10 @@ Hamid R. Sheikh and Eero P. Simoncelli
 \bibitem{shs}
 FEDERAL INFORMATION PROCESSING STANDARDS PUBLICATION
 \emph{Secure Hash Standard \\http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf}
+
+\bibitem{vmaf}
+Netflix
+\emph{Perceptual video quality assessment based on multi-method fusion \\https://github.com/Netflix/vmaf}
 
 \end{thebibliography}
 
